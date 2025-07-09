@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download abdou-chadwm</title>
+    <style>
+        :root {
+            --bg-color: #1a1b26;
+            --text-color: #a9b1d6;
+            --accent-color: #7aa2f7;
+            --secondary-color: #bb9af7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        h1 {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .download-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 8px;
+            border: 1px solid var(--accent-color);
+            text-align: center;
+            max-width: 400px;
+            margin: 2rem auto;
+        }
+
+        .download-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .download-button {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 1rem 2rem;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .download-button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .nav-links {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .nav-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .update-time {
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Download abdou-chadwm</h1>
+        </header>
+
+        <div class="download-card">
+            <h3>Download Source Code</h3>
+            <p>Download the complete source code as a ZIP file</p>
+            <a href="https://github.com/abdou-chadwm/abdou-chadwm/archive/refs/heads/main.zip" class="download-button">Download ZIP</a>
+        </div>
+
+        <div class="nav-links">
+            <a href="https://abdou-chadwm.github.io">← Back to Home</a>
+            <a href="https://github.com/abdou-chadwm/abdou-chadwm">View on GitHub</a>
+        </div>
+    </div>
+</body>
+</html>
