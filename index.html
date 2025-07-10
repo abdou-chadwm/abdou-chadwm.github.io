@@ -1,21 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>abdou-chadwm - Personalized dwm Fork</title>
     <style>
-        :root {
+        :root[data-theme="dark"] {
             --bg-color: #1a1b26;
             --text-color: #a9b1d6;
             --accent-color: #7aa2f7;
             --secondary-color: #bb9af7;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        :root[data-theme="light"] {
+            --bg-color: #f5f5f5;
+            --text-color: #24283b;
+            --accent-color: #2ac3de;
+            --secondary-color: #bb9af7;
+            --card-bg: rgba(0, 0, 0, 0.05);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         body {
@@ -38,9 +48,10 @@
             right: 2rem;
             display: flex;
             gap: 1rem;
+            align-items: center;
         }
 
-        .download-button {
+        .nav-button {
             display: inline-block;
             padding: 0.8rem 1.5rem;
             background-color: var(--accent-color);
@@ -51,9 +62,56 @@
             transition: transform 0.2s, opacity 0.2s;
         }
 
-        .download-button:hover {
+        .nav-button:hover {
             opacity: 0.9;
             transform: translateY(-2px);
+        }
+
+        /* Theme Toggle Switch */
+        .theme-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            margin-left: 1rem;
+        }
+
+        .theme-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--card-bg);
+            transition: .4s;
+            border-radius: 30px;
+            border: 2px solid var(--accent-color);
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "🌙";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 3px;
+            transition: .4s;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(30px);
+            content: "☀️";
         }
 
         header {
@@ -82,7 +140,7 @@
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--card-bg);
             padding: 2rem;
             border-radius: 8px;
             border: 1px solid var(--accent-color);
@@ -98,7 +156,7 @@
         }
 
         .language-bar {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--card-bg);
             border-radius: 4px;
             height: 30px;
             display: flex;
@@ -114,29 +172,6 @@
             font-size: 0.9rem;
         }
 
-        .github-link {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 1rem 2rem;
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-            transition: opacity 0.2s;
-        }
-
-        .github-link:hover {
-            opacity: 0.9;
-        }
-
-        .update-time {
-            text-align: center;
-            margin-top: 2rem;
-            color: var(--text-color);
-            font-size: 0.9rem;
-        }
-
         @media (max-width: 768px) {
             .top-nav {
                 position: relative;
@@ -145,13 +180,22 @@
                 justify-content: center;
                 margin-bottom: 2rem;
             }
+
+            header {
+                padding-top: 2rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <nav class="top-nav">
-            <a href="download.html" class="download-button">Download</a>
+            <a href="download.html" class="nav-button">Download</a>
+            <a href="https://github.com/abdou-chadwm/abdou-chadwm" class="nav-button">View on GitHub</a>
+            <label class="theme-switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider"></span>
+            </label>
         </nav>
 
         <header>
@@ -184,15 +228,23 @@
                 <div class="language-segment" style="background: #808080; width: 1.4%;">Other - 1.4%</div>
             </div>
         </div>
-
-        <center>
-            <a href="https://github.com/abdou-chadwm/abdou-chadwm" class="github-link">View on GitHub</a>
-        </center>
-
-        <div class="update-time">
-            <p>Page generated on: 2025-07-09 23:59:02 UTC</p>
-            <p>Maintained by: @abdoubenyahya</p>
-        </div>
     </div>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const root = document.documentElement;
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        root.setAttribute('data-theme', savedTheme);
+        themeToggle.checked = savedTheme === 'light';
+
+        // Theme toggle functionality
+        themeToggle.addEventListener('change', () => {
+            const newTheme = themeToggle.checked ? 'light' : 'dark';
+            root.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
 </body>
 </html>
